@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐍 贪吃蛇游戏 - 现代版</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🐍 贪吃蛇游戏</h1>
+        
+        <div class="game-info">
+            <div class="score-board">
+                <div class="score-item">
+                    <span class="label">得分:</span>
+                    <span id="score" class="value">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="label">最高分:</span>
+                    <span id="highScore" class="value">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="label">等级:</span>
+                    <span id="level" class="value">1</span>
+                </div>
+                <div class="score-item">
+                    <span class="label">速度:</span>
+                    <span id="speed" class="value">快速</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="startBtn" class="btn btn-start">▶ 开始游戏</button>
+            <button id="pauseBtn" class="btn btn-pause" disabled>⏸ 暂停</button>
+            <button id="resetBtn" class="btn btn-reset">↻ 重置</button>
+        </div>
+
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+
+        <div class="direction-buttons mobile-only">
+            <button class="dir-btn" data-direction="up">▲</button>
+            <div class="middle-row">
+                <button class="dir-btn" data-direction="left">◀</button>
+                <button class="dir-btn" data-direction="right">▶</button>
+            </div>
+            <button class="dir-btn" data-direction="down">▼</button>
+        </div>
+
+        <div class="instructions">
+            <h3>📖 游戏说明</h3>
+            <div class="instructions-content">
+                <div class="instruction-item">
+                    <strong>操作方式：</strong>
+                    <ul>
+                        <li>⌨️ 键盘：↑↓←→ 或 WASD 控制方向</li>
+                        <li>🖱️ 鼠标：点击屏幕相应区域</li>
+                        <li>📱 触屏：点击方向按钮或滑动</li>
+                    </ul>
+                </div>
+                <div class="instruction-item">
+                    <strong>食���系统：</strong>
+                    <ul>
+                        <li>🔴 红色食物：+10分，蛇增长1格</li>
+                        <li>⭐ 黄色食物：+50分，蛇缩短3格</li>
+                    </ul>
+                </div>
+                <div class="instruction-item">
+                    <strong>游戏结束条件：</strong>
+                    <ul>
+                        <li>❌ 碰到墙壁</li>
+                        <li>❌ 碰到自己</li>
+                        <li>❌ 碰到障碍物（高难度）</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="gameStatus" class="game-status" style="display: none;">
+            <h2 id="statusTitle">游戏信息</h2>
+            <p id="statusMessage">游戏已暂停</p>
+            <div id="statusDetails"></div>
+        </div>
+    </div>
+
+    <div id="gameOverModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>🎮 游戏结束</h2>
+            <div class="game-result">
+                <p class="result-title" id="resultTitle">失败原因</p>
+                <p class="result-message" id="resultMessage">您碰到了墙壁</p>
+                <div class="result-stats">
+                    <div class="stat">
+                        <span class="stat-label">最终得分:</span>
+                        <span class="stat-value" id="finalScore">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">最高得分:</span>
+                        <span class="stat-value" id="finalHighScore">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">蛇的长度:</span>
+                        <span class="stat-value" id="snakeLength">3</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button id="retryBtn" class="btn btn-start">🔄 重新开始</button>
+                <button id="homeBtn" class="btn btn-reset">🏠 返回主页</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+</body>
+</html>
